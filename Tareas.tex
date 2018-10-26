@@ -3,6 +3,7 @@
 \usepackage[spanish]{babel}
 
 \usepackage{pdfpages}
+\usepackage{bbm}
 
 \usepackage[T1]{fontenc} %Me deja combinar la negrita con las Mayusculas
 
@@ -11,6 +12,7 @@
 \usepackage{amssymb}
 \usepackage{bbm} %para el 1
 \usepackage{mathrsfs}
+\usepackage{multirow}
 % \setmathfont[version=setB,StylisticSet=1]{XITS Math}
 
 \usepackage{graphicx} %para la imagen
@@ -107,6 +109,22 @@ $$
 \subsection{Ejercicio 4: no entregable}
 Dado el problema de decisión introducido en el "Diseño del receptor de una comunicación binaria", verificar que:
 		$$\delta(r) = \mathbbm{1} \{ P(S=1|R=r) > P(S=0|R=r)\}$$
+
+\subsubsection{Solución}
+\begin{tabular}{cc|c|c|}
+	\cline{3-4}
+	& & \multicolumn{2}{ c| }{ S } \\ \cline{3-4}
+	& & 1 & 0 \\ \cline{1-4}
+	\multicolumn{1}{ |c  }{\multirow{2}{*}{R} } &
+	\multicolumn{1}{ |c| }{1} & P(R=1,S=1) & P(R=1,S=0) \\ \cline{2-4}
+	\multicolumn{1}{ |c  }{}                        &
+	\multicolumn{1}{ |c| }{0} & P(R=0,S=1) & P(R=0,S=0) \\ \cline{1-4}
+\end{tabular}
+
+El $\delta$ que maximiza $$P(S = \delta(r))=P(S= \delta(0),R=0) + P(S= \delta(1),R=1)$$
+
+Es $\delta(r)= \mathbbm{1}\{P(S=1,R=r)>P(S=0,R=r)\}$ porque $\delta(r)=1$ cuando $P(S=1,R=r)>P(S=0,R=r)$, es decir, $\delta(r)=1$ cuando, dado $r$, lo más posible es que $S=1$. Por otro lado, será $\delta(r)=0$ cuando lo más probable es que $S=0$ dado ese r.
+
 \section{Clase 2}
 \subsection{Ejercicio 5}
 Resolver la siguiente cuenta:
