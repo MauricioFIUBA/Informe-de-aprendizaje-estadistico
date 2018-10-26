@@ -3,7 +3,6 @@
 \usepackage[spanish]{babel}
 
 \usepackage{pdfpages}
-\usepackage{bbm}
 
 \usepackage[T1]{fontenc} %Me deja combinar la negrita con las Mayusculas
 
@@ -12,12 +11,16 @@
 \usepackage{amssymb}
 \usepackage{bbm} %para el 1
 \usepackage{mathrsfs}
-\usepackage{multirow}
-% \setmathfont[version=setB,StylisticSet=1]{XITS Math}
+\usepackage{enumitem} %Para la enumeracion con letras
 
 \usepackage{graphicx} %para la imagen
 \usepackage{subcaption} %para poner varias imagenes juntas
 \usepackage{float}
+
+
+\usepackage{chngcntr} %Para resetear el contador de las ecuaciones por secciones y subsecciones
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
 
 \title{Tarea de Aprendizaje Estadístico, Teoría y aplicación}
 \author{}
@@ -69,6 +72,7 @@ Y sea una recta $g(x)$ tal que:
 Probar la siguiente desigualdad:
 		$$f(x_0) \leq p_1f(x_1) + p_2f(x_2)$$
 
+\subsubsection{Solucion}
 La solucion de este problema es simplemente plantear $g(x) = ax+b$ y que como la función es  $f(x)$ es convexa en el intervalo $[x_1, x_1]$ vale lo siguiente.
 
 $g(x_1) = ax_1+b = f(x_1) $ y $g(x_2) = ax_2+b = f(x_2) $ entonces $g(x_0) = g(p_1x_1+p_2x_2)=a(p_1x_1+p_2x_2)+b = ap_1x_1+ap_2x_2+b$ y como $p_1+P_2=1$ puedo multiplicar al termino $b$ por $(p_1+P_2)$ sin alterar el resultado.
@@ -83,6 +87,24 @@ Ahora como $f(x) \leq g(x) \forall x \in [x_1,x_2]$, vale la desigualdad:
 
 Utilizando $E[f(x)m(x)] = E[Yf(x)]$, y algún artilugio que crea conveniente, demostrar que vale la siguiente ecuacion:
 		$$E[\phi(x)Y|X] = \phi(x)E[Y|X]$$
+\subsubsection{Solucion}
+
+Si $m(X) = \phi(X)E[Y|X]$
+		\begin{equation}
+			\to E[m(X)f(X)] = E[\phi(X)E[Y|X]f(X)]
+		\end{equation}
+
+		$\phi(X)f(X) = g(X)$
+		$$\to E[\phi(X)E[g(X)]f(X)] = E[E[Y|X]g(X)]$$
+Por la definición de la esperanza condicional:
+	 	$$E[E[Y|X]f(X)] = E[Yf(X)]$$
+		\begin{equation}
+			\to E[E[Y|X]g(X)] = E[Yg(X)] = E[\phi(X)Yf(x)]
+		\end{equation}
+
+De (1) y (2):
+		$$E[m(X)f(X)] = E[\phi(X)Yf(X)]$$
+Por definición: $m(X) = E[\phi(X)Y|X] = \phi(X)E[Y|X]$
 
 \subsection{Ejercicio 3: Simulacion de 200 puntos}
 Los pares ordenados fueron simulados con las siguientes condiciones:
@@ -129,6 +151,7 @@ Es $\delta(r)= \mathbbm{1}\{P(S=1,R=r)>P(S=0,R=r)\}$ porque $\delta(r)=1$ cuando
 \subsection{Ejercicio 5}
 Resolver la siguiente cuenta:
 		$$P(X,Y) = \int\limits_0^{1/2}(1-x)\ dx + \int\limits_{1/2}^{3/4} x\ dx$$
+\subsubsection{Solucion}
 		$$= \left.\left(x-\frac{x^2}{2}\right)\right|_{0}^{1/2}+\left. \frac{x^2}{2}\right|_{1/2}^{3/4}$$
 		$$= \left(\frac{1}{2}-\frac{(1/2)^2}{2}\right) + \left(\frac{(3/4)^2}{2} - \frac{(1/2)^2}{2}\right)$$
 Por lo tanto:
@@ -265,7 +288,7 @@ Ahora el criterio de evaluacion va ser el de los k-primeros vecinos, en el que c
 
 Desmostrar:
 		$$(a+b+c)^2 \leq 3(a^2+b^2+c^2) \forall a,b,c \in \mathbbm{R}$$
-Desmostracion:
+\subsubsection{Solucion}
 
 Distribuyendo el cuadrado en el trinomio resulta en lo siguiente:
 		$$a^2+2ab+2ac+b^2+2bc+c^2 \leq 3(a^2+b^2+c^2)$$
@@ -284,7 +307,8 @@ Dada las desigualdades:
 		$$P[S_n - E[S_n] \geq -\epsilon ] \geq e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
 Probar que es obvio lo siguiente:
 		$$P[|S_n - E[S_n]| > \epsilon ] \geq 2 e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
-Solucion, usando la propiedad $P(A\cup B) \leq P(A) + P(B)$ puedo escribir las dos ecuaciones de la siguiente forma:
+\subsubsection{Solucion}
+Usando la propiedad $P(A\cup B) \leq P(A) + P(B)$ puedo escribir las dos ecuaciones de la siguiente forma:
 		$$P[S_n - E[S_n] \leq \epsilon \cup S_n - E[S_n] \geq -\epsilon ] \leq P[S_n - E[S_n] \leq \epsilon ] + P[S_n - E[S_n] \geq -\epsilon ]$$
 		$$\leq e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2} + P[S_n - E[S_n] \geq -\epsilon ]$$
 		$$\leq 2 e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
@@ -295,12 +319,83 @@ Y que inicialmente tengo la $P[-\epsilon \leq S_n - E[S_n] \leq \epsilon ]$ lo t
 Probar la siguiente desigualdad:
 		$$|\widehat{L}_n(\phi_n^*)-L(\phi_n^*)| \leq \sup\limits_{\phi \in \mathscr{C}}|\widehat{L}_n(\phi)-L(\phi)| $$
 Basicamente dice que la que la diferencia entre el minimo error estimado, y el verdadero (basado en los datos), es menor  o igual la maxima diferencia que puede haber entre el error estimado y el verdadero para un clasificador determinado.
+
+
+\subsection{Ejercicio 13}
+Dada la función:
+		$$\phi(\mu) = \ln(pe^\mu + 1 - p)- p\mu$$
+Demostrar que:
+\begin{enumerate}
+	\item $\phi(0) = 0$
+	\item $\phi'(0) = 0$
+\end{enumerate}
+\subsubsection{Solucion}
+\begin{enumerate}
+	\item $\phi(0) = 0$
+	$$\phi(\mu) = \ln(pe^\mu + 1 - p)- p\mu$$
+	$$\phi(0) = \ln(pe^0 + 1 - p)- p0$$
+	$$\phi(0) = \ln(p+1-p)$$
+	$$\phi(0) = \ln(1)$$
+	$$\phi(0) = 0$$
+	\item $\phi'(0) = 0$
+		$$\phi(\mu) = \ln(pe^\mu + 1 - p)- p\mu$$
+		$$\phi'(\mu) = \frac{pe^\mu}{pe^\mu + 1 - p}-p$$
+		$$\phi'(0)) = \frac{pe^0}{pe^0 + 1 - p}-p $$
+		$$\phi'(0)) = \frac{p}{p+1-p}-p$$
+		$$\phi'(0) = p-p$$
+		$$\phi'(0) = 0$$
+\end{enumerate}
+
 \subsection{Ejercicio 14: Simulacion de error}
+Abajo se simulara el mismo ejercicio que el problema de seleccion, con la excepcion de que ahora las areas se mantendran constantes para medir cual es error de los siguientes modelos:
+\begin{enumerate}[label=(\alph*)]
+	\item El area cuadrada partida a la mitad de forma horizontal, forman dos rectangulos iguales.
+	\item Similar al a) pero cortado a la mitad de forma vertical.
+	\item El area cuadrada estara partido a la mitad de forma diagonal desde (0,0) hasta (1,1).
+	\item El area cuadrada estara partido a la mitad de forma diagonal desde (0,1) hasta (1,0).
+	\item Combinación del a) y b).
+	\item Combinación del c) y d).
+\end{enumerate}
+Cada uno de los modelos de clasificación tuvieron la siguiente probabilidad, estimada, de error:
+\begin{enumerate}[label=(\alph*)]
+	\item $0.228$
+	\item $0.477$
+	\item $0.313$
+	\item $0.322$
+	\item $0.228$
+	\item $0.388$
+\end{enumerate}
+
+\begin{figure}[H]
+	\begin{minipage}[b]{.5\linewidth}
+		\includegraphics[width = \textwidth]{seccion_horizontal}
+		\subcaption{Clasificado usando y = 0.5}\label{fig:horizontal}
+
+		\includegraphics[width = \textwidth]{seccion_vertical}
+		\subcaption{Clasificado usando x = 0.5}\label{fig:vertical}
+
+		\includegraphics[width = \textwidth]{seccion_diagonal_ascendente}
+		\subcaption{Clasificado usando x}\label{fig:diagonal_a}
+	\end{minipage}
+	\begin{minipage}[b]{.5\linewidth}
+		\includegraphics[width = \textwidth]{seccion_diagonal_descendente}
+		\subcaption{Clasificado usando 1-x.}\label{fig:diagonal_d}
+
+		\includegraphics[width = \textwidth]{seccion_cruz}
+		\subcaption{Clasificado usando (a) y (b)}\label{fig:cruz}
+
+		\includegraphics[width = \textwidth]{seccion_x}
+		\subcaption{Clasificado usando (c) y (d)}\label{fig:x}
+	\end{minipage}
+	\label{fig:error}
+\end{figure}
 
 \section{Clase 6}
+\subsection{Ejercicio 15: escrito a mano}
+Anexo escrito a mano
 \subsection{Ejercicio 16}
 Para un conjunto $A' = \{(a,b): a<b \}$, calcular $N_{A'}(z_1,z_2,z_3)$
-
+\subsubsection{Solucion}
 Los conjuntos que se pueden hacer son $\{\emptyset\}$, $\{z_1\}$, $\{z_2\}$, $\{z_3\}$, $\{z_1,z_2\}$, $\{z_2,z_3\}$, $\{z_1, z_2, z_3\}$. Por lo tanto $N_{A'}(z_1,z_2,z_3) = 7$
 
 \end{document}
