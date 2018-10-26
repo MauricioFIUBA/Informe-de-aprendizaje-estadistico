@@ -10,8 +10,11 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{bbm} %para el 1
+\usepackage{mathrsfs}
+% \setmathfont[version=setB,StylisticSet=1]{XITS Math}
 
 \usepackage{graphicx} %para la imagen
+\usepackage{subcaption} %para poner varias imagenes juntas
 \usepackage{float}
 
 \title{Tarea de Aprendizaje Estadístico, Teoría y aplicación}
@@ -32,11 +35,15 @@
       {\scshape\large TAREA \par}
       \vspace{0.5cm
       \raggedright}
-      {\scshape\large  ALUMNO: \par}
+      {\scshape\large  ALUMNOS: \par}
       \vspace{0.5cm}
     \centering
       {\normalsize  Cabrera, Mauricio Luca - \#101334 \par}
       {\small  mlcabrera@fi.uba.ar \par}
+	  {\normalsize Flores Rodríguez, José Julián - Maestría en Ingeniería Matemática \par}
+      {\small  julian12310@gmail.com \par}
+	  {\normalsize Cajachuán, Kevin - \#98725 \par}
+      {\small  kevincajachuan@hotmail.com \par}
 \end{titlepage} %Cerrado de la caratula del tp
 \newpage
 \tableofcontents
@@ -122,34 +129,36 @@ Para esta simulacion uso $h_n = \frac{1}{\sqrt[3]{n}}$ y se uso el siguiente cri
 		    0 &\text{e.o.c}
 		\end{cases}
 		$$
+\begin{center}
+	\begin{figure}[H]
+	    \includegraphics[width = 0.8\textwidth]{grafico_10_puntos}
+	    \caption{Imagen del espacio clasificado con 10 puntos.}
+	\end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{grafico_10_puntos}
-    \caption{Imagen del espacio clasificado con 10 puntos.}
-\end{figure}
+	\begin{figure}[H]
+	    \includegraphics[width = 0.8\textwidth]{grafico_100_puntos}
+	    \caption{Imagen del espacio clasificado con 100 puntos.}
+	\end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{grafico_100_puntos}
-    \caption{Imagen del espacio clasificado con 100 puntos.}
-\end{figure}
+	\begin{figure}[H]
+	    \includegraphics[width = 0.8\textwidth]{grafico_1000_puntos}
+	    \caption{Imagen del espacio clasificado con 1000 puntos.}
+	\end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{grafico_1000_puntos}
-    \caption{Imagen del espacio clasificado con 1000 puntos.}
-\end{figure}
+	\begin{figure}[H]
+	    \includegraphics[width = 0.8\textwidth]{grafico_10000_puntos}
+	    \caption{Imagen del espacio clasificado con 10000 puntos.}
+	\end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{grafico_10000_puntos}
-    \caption{Imagen del espacio clasificado con 10000 puntos.}
-\end{figure}
+	\begin{figure}[H]
+	    \includegraphics[width = \textwidth]{grafico_100000_puntos}
+	    \caption{Imagen del espacio clasificado con 100000 puntos.}
+	\end{figure}
+\end{center}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{grafico_100000_puntos}
-    \caption{Imagen del espacio clasificado con 100000 puntos.}
-\end{figure}
 
 \section{Clase 4}
-\subsection{Ejercicio 9: Seleccion con el metodo de los k-primeros Vecinos}
+\subsection{Ejercicio 9: Seleccion Método de los k-primeros Vecinos}
 
 Abajo se simulara distantas cantidades de puntos de color y los cuales se clasificaran con distintos colores de la siguiente forma:
 \begin{itemize}
@@ -174,50 +183,56 @@ Abajo se simulara distantas cantidades de puntos de color y los cuales se clasif
 \end{itemize}
 Ahora el criterio de evaluacion va ser el de los k-primeros vecinos, en el que consiste revisando una cantidad k de vecinos, elegir de que color es el punto evaluado. El experimento se realizara con k = 1, 3 y 13. La cantidad de puntos N = 100, 1000, 10000, 100000.
 
+
 \begin{figure}[H]
-    \includegraphics[width = \textwidth]{mil_puntos_1_vecino}
-    \caption{Imagen del espacio clasificado con mil puntos usando el método del primer vecino mas cercano.}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{mil_puntos_1_vecino}
+		\subcaption{Clasificado usando 1 vecino.}\label{fig:mil_1}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{mil_puntos_3_vecino}
+		\subcaption{Clasificado usando 3 vecinos.}\label{fig:mil_3}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{mil_puntos_13_vecino}
+		\subcaption{Clasificado usando 13 vecinos.}\label{fig:mil_13}
+	\end{minipage}
+	\caption{Simulacion usando mil puntos}\label{fig:mil}
+\end{figure}
+
+
+\begin{figure}[H]
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{diez_mil_puntos_1_vecino}
+		\subcaption{Clasificado usando 1 vecino.}\label{fig:diez_mil_1}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{diez_mil_puntos_3_vecino}
+		\subcaption{Clasificado usando 3 vecinos.}\label{fig:diez_mil_3}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{diez_mil_puntos_13_vecino}
+		\subcaption{Clasificado usando 13 vecinos.}\label{fig:diez_mil_13}
+	\end{minipage}
+	\caption{Simulacion usando diez mil puntos}\label{fig:diez_mil}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width = \textwidth]{mil_puntos_3_vecino}
-    \caption{Imagen del espacio clasificado con mil puntos usando el método de los primeros 3 vecinos mas cercano.}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{cien_mil_puntos_1_vecino}
+		\subcaption{Clasificado usando 1 vecino.}\label{fig:cien_mil_1}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{cien_mil_puntos_3_vecino}
+		\subcaption{Clasificado usando 3 vecinos.}\label{fig:cien_mil_3}
+	\end{minipage}
+	\begin{minipage}[b]{.3\linewidth}
+		\includegraphics[width = \textwidth]{cien_mil_puntos_13_vecino}
+		\subcaption{Clasificado usando 13 vecinos.}\label{fig:cien_mil_13}
+	\end{minipage}
+	\caption{Simulacion usando cien mil puntos}\label{fig:cien_mil}
 \end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{mil_puntos_13_vecino}
-    \caption{Imagen del espacio clasificado con mil puntos usando el método de los primeros 13 vecinos mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{diez_mil_puntos_1_vecino}
-    \caption{Imagen del espacio clasificado con diez mil puntos usando el método del primer vecino mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{diez_mil_puntos_3_vecino}
-    \caption{Imagen del espacio clasificado con diez mil puntos usando el método de los primeros 3 vecinos mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{diez_mil_puntos_13_vecino}
-    \caption{Imagen del espacio clasificado con diez mil puntos usando el método de los primeros 13 vecinos mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{cien_mil_puntos_1_vecino}
-    \caption{Imagen del espacio clasificado con cien mil puntos usando el método del primer vecino mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{cien_mil_puntos_3_vecino}
-    \caption{Imagen del espacio clasificado con cien mil puntos usando el método de los primeros 3 vecinos mas cercano.}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width = \textwidth]{cien_mil_puntos_13_vecino}
-    \caption{Imagen del espacio clasificado con cien mil puntos usando el método de los primeros 13 vecinos mas cercano.}
-\end{figure}
 \subsection{Ejercicio 10}
 
 Desmostrar:
@@ -235,8 +250,29 @@ resultando en:
 Lo cual es siempre verdadero $\forall \alpha,\beta \in \mathbbm{R}$.
 
 \section{Clase 5}
-\subsection{Simulacion de error}
+\subsection{Ejercicio 11}
+Dada las desigualdades:
+		$$P[S_n - E[S_n] \leq \epsilon ] \geq e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
+		$$P[S_n - E[S_n] \geq -\epsilon ] \geq e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
+Probar que es obvio lo siguiente:
+		$$P[|S_n - E[S_n]| > \epsilon ] \geq 2 e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
+Solucion, usando la propiedad $P(A\cup B) \leq P(A) + P(B)$ puedo escribir las dos ecuaciones de la siguiente forma:
+		$$P[S_n - E[S_n] \leq \epsilon \cup S_n - E[S_n] \geq -\epsilon ] \leq P[S_n - E[S_n] \leq \epsilon ] + P[S_n - E[S_n] \geq -\epsilon ]$$
+		$$\leq e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2} + P[S_n - E[S_n] \geq -\epsilon ]$$
+		$$\leq 2 e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
+Y que inicialmente tengo la $P[-\epsilon \leq S_n - E[S_n] \leq \epsilon ]$ lo tanto:
+		$$P[|S_n - E[S_n]| > \epsilon ] \geq 2 e^{-2\epsilon/\sum\limits_{i=1}^{n}(b_i-a_i)^2}$$
 
+\subsection{Ejercicio 12}
+Probar la siguiente desigualdad:
+		$$|\widehat{L}_n(\phi_n^*)-L(\phi_n^*)| \leq \sup\limits_{\phi \in \mathscr{C}}|\widehat{L}_n(\phi)-L(\phi)| $$
+Basicamente dice que la que la diferencia entre el minimo error estimado, y el verdadero (basado en los datos), es menor  o igual la maxima diferencia que puede haber entre el error estimado y el verdadero para un clasificador determinado.
+\subsection{Ejercicio 14: Simulacion de error}
 
+\section{Clase 6}
+\subsection{Ejercicio 16}
+Para un conjunto $A' = \{(a,b): a<b \}$, calcular $N_{A'}(z_1,z_2,z_3)$
+
+Los conjuntos que se pueden hacer son $\{\emptyset\}$, $\{z_1\}$, $\{z_2\}$, $\{z_3\}$, $\{z_1,z_2\}$, $\{z_2,z_3\}$, $\{z_1, z_2, z_3\}$. Por lo tanto $N_{A'}(z_1,z_2,z_3) = 7$
 
 \end{document}
